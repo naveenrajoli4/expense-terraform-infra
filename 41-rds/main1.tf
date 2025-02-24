@@ -65,7 +65,7 @@ resource "aws_db_option_group" "db_option_group" {
 
 resource "aws_route53_record" "r53_rds" {
   zone_id = var.zone_id
-  name    = "${local.resource_name}.${var.domain_name}"
+  name    = "mysql-${var.environment}.${var.domain_name}"
   type    = "CNAME"
   ttl     = 5
   records = [aws_db_instance.rdb.address]

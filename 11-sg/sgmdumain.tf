@@ -172,7 +172,7 @@ resource "aws_security_group_rule" "vpn_backend" {
 resource "aws_security_group_rule" "backend_mysql" {
   type                     = "ingress"
   from_port                = 3306
-  to_port                  = 2306
+  to_port                  = 3306
   protocol                 = "tcp"
   security_group_id        = module.sg_mysql.sg_id
   source_security_group_id = module.sg_backend.sg_id
