@@ -148,7 +148,7 @@ resource "aws_security_group_rule" "bastion_rbs" {
   source_security_group_id = module.sg_bastion.sg_id
 }
 
-# Accepting traffic from mysql seurity group to bastion security group 
+# Accepting traffic from mysql seurity group to vpn security group 
 resource "aws_security_group_rule" "vpn_rbs" {
   type                     = "ingress"
   from_port                = 3306
@@ -156,4 +156,24 @@ resource "aws_security_group_rule" "vpn_rbs" {
   protocol                 = "tcp"
   security_group_id        = module.sg_mysql.sg_id
   source_security_group_id = module.sg_vpn.sg_id
+}
+
+# Accepting traffic from backend seurity group to vpn security group 
+resource "aws_security_group_rule" "vpn_backend" {
+  type                     = "ingress"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  security_group_id        = module.sg_backend.sg_id
+  source_security_group_id = module.sg_vpn.sg_id
+}
+
+# Accepting traffic from backend seurity group to mysql security group 
+resource "aws_security_group_rule" "backend_mysql" {
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 2306
+  protocol                 = "tcp"
+  security_group_id        = module.sg_mysql.sg_id
+  source_security_group_id = module.sg_backend.sg_id
 }
