@@ -7,7 +7,7 @@ resource "aws_lb" "app_alb" {
   subnets            = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
 
 
-  enable_deletion_protection = true # Prevents accidental deletion
+  enable_deletion_protection = false # Prevents accidental deletion
 
   tags = merge(
     var.commn_tags,
