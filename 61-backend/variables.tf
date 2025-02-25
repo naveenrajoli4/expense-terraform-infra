@@ -20,3 +20,11 @@ variable "commn_tags" {
     Environment = "production"
   }
 }
+
+variable "zone_id" {
+  default = "Z09769147H1JY4GOARUG"
+}
+
+variable "domain_name" {
+  default = "naveenrajoli.site"
+}

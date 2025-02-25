@@ -177,3 +177,21 @@ resource "aws_security_group_rule" "backend_mysql" {
   security_group_id        = module.sg_mysql.sg_id
   source_security_group_id = module.sg_backend.sg_id
 }
+
+resource "aws_security_group_rule" "vpn_backend_8080" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = module.sg_backend.sg_id
+  source_security_group_id = module.sg_vpn.sg_id
+}
+
+resource "aws_security_group_rule" "app_alb_backend" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = module.sg_backend.sg_id
+  source_security_group_id = module.sg_app_alb.sg_id
+}

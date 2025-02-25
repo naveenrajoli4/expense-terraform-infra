@@ -31,4 +31,12 @@ output "ami-id" {
   value = data.aws_ami.rhel9.id
 }
 
+data "aws_ssm_parameter" "vpc_id" {
+  name = "/${var.location}/${var.project_name}/${var.environment}/vpcid"
+}
+
+
+data "aws_ssm_parameter" "app_alb_listner_arn" {
+  name = "/${var.location}/${var.project_name}/${var.environment}/app_alb_listner_arn"
+}
 
