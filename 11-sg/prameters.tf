@@ -28,6 +28,12 @@ resource "aws_ssm_parameter" "sg_app_alb" {
   value = module.sg_app_alb.sg_id
 }
 
+resource "aws_ssm_parameter" "sg_web_alb" {
+  name  = "/${var.location}/${var.project_name}/${var.environment}/sg_web_alb"
+  type  = "String"
+  value = module.sg_web_alb.sg_id
+}
+
 resource "aws_ssm_parameter" "sg_vpn_id" {
   name  = "/${var.location}/${var.project_name}/${var.environment}/sg_vpn_id"
   type  = "String"

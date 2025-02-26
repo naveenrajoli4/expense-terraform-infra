@@ -112,7 +112,7 @@ resource "aws_launch_template" "backend_lt" {
 resource "aws_autoscaling_group" "backend_asg" {
   name = "${var.location}-${var.project_name}-${var.environment}-backend-asg"
   desired_capacity = 1
-  max_size         = 1
+  max_size         = 10
   min_size         = 1
   health_check_grace_period = 180 # 3 minutes for instance to intialise
   health_check_type = "ELB"
